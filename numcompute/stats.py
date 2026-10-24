@@ -394,25 +394,30 @@ class RunningStats:
 
     @property
     def mean(self):
+        """Return a copy of the running mean; raise ValueError before any update."""
         self._check()
         return _finish(self._mean)
 
     @property
     def var(self):
+        """Return variance using the configured ddof; insufficient degrees of freedom yield NaN."""
         self._check()
         denom = self._n - self.ddof
         return _finish(self._m2 / denom if denom > 0 else np.full_like(self._m2, np.nan))
 
     @property
     def std(self):
+        """Return the square root of the running variance."""
         return _finish(np.sqrt(self.var))
 
     @property
     def min(self):
+        """Return a copy of the running minimum; raise ValueError before any update."""
         self._check()
         return _finish(self._min)
 
     @property
     def max(self):
+        """Return a copy of the running maximum; raise ValueError before any update."""
         self._check()
         return _finish(self._max)

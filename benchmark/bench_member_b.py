@@ -1,4 +1,4 @@
-"""Benchmark: Python loops vs NumCompute vectorised implementations (Member B modules).
+"""Benchmark: Python loops vs NumCompute vectorised implementations (Yi Su's modules).
 
 Run from the project root:
 
@@ -9,7 +9,7 @@ What it does
 For each task it times a plain-Python loop version and the vectorised
 NumCompute version on the same random data, checks both give the same
 answer, and prints a Markdown table (also saved to
-``benchmark/results_member_b.md``) together with environment notes.
+``benchmark/results_yi_su.md``) together with environment notes.
 
 Timing method: ``timeit`` with several repeats; we report the *median*
 time of one call, which is less sensitive to background noise than the mean.
@@ -123,7 +123,7 @@ def median_time(fn, number=1):
 
 def fmt(sec):
     if sec < 1e-3:
-        return f"{sec * 1e6:,.1f} µs"
+        return f"{sec * 1e6:,.1f} us"
     if sec < 1:
         return f"{sec * 1e3:,.2f} ms"
     return f"{sec:,.2f} s"
@@ -213,7 +213,7 @@ def main():
         "|---|---|---:|---:|---:|:---:|",
     ]
     for task, size, tl, tv, sp, ok in rows:
-        lines.append(f"| {task} | {size} | {tl} | {tv} | {sp:,.1f}× | {'✓' if ok else '✗'} |")
+        lines.append(f"| {task} | {size} | {tl} | {tv} | {sp:,.1f}x | {'yes' if ok else 'no'} |")
     table = "\n".join(lines)
 
     env = "\n".join([
@@ -226,9 +226,9 @@ def main():
         "(`sorted`, `heapq`, `sum`, `for`).",
     ])
 
-    report = f"# Benchmark results (Member B)\n\n{table}\n\n## Environment\n\n{env}\n"
+    report = f"# Benchmark results (Yi Su)\n\n{table}\n\n## Environment\n\n{env}\n"
     print("\n" + report)
-    out = ROOT / "benchmark" / "results_member_b.md"
+    out = ROOT / "benchmark" / "results_yi_su.md"
     out.write_text(report, encoding="utf-8")
     print(f"Saved to {out}")
 

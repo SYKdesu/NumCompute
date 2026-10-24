@@ -1,0 +1,7 @@
+hours,attendance,score,group,passed
+1,60,60,A,0
+2,65,78,B,0
+3,,85,A,1
+4,80,92,B,1
+5,90,92,A,1
+6,95,95,B,1
